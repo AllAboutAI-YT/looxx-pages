@@ -28,9 +28,22 @@
 
 <h2>What we collect</h2>
 <ul>
-  <li><strong>Photos you choose to upload.</strong> When you confirm a portrait inside the App, the photo you selected is sent over an encrypted connection to our servers and forwarded to OpenAI's image-generation service to compose your three result plates (Lifestyle, The Salon, Wardrobe Palette).</li>
+  <li><strong>Photos you choose to upload (including face data).</strong> When you confirm a portrait inside the App, the photo you selected — which contains your face — is sent over an encrypted connection to our servers and forwarded to OpenAI's image-generation service to compose your three result plates (Lifestyle, The Salon, Wardrobe Palette). See the dedicated section below for full details on face-data handling.</li>
   <li><strong>Purchase history.</strong> Apple's App Store records your in-app purchases. We receive a signed transaction identifier from Apple to verify and deliver your purchased session credits.</li>
   <li><strong>Basic technical data.</strong> Standard iOS system information (device type, OS version) and crash logs may be collected by Apple's frameworks. We do not collect any of this for advertising or tracking.</li>
+</ul>
+
+<div class="ornament">◆</div>
+
+<h2>Face data</h2>
+<p>Looxx works by sending the portrait photograph you select to a server-side image-generation pipeline that produces stylized images of you. Because the photograph contains your face, the following section sets out — explicitly — how face data is handled.</p>
+<ul>
+  <li><strong>What face data is collected.</strong> The single still photograph you actively choose inside the App and confirm in the cropper. We do not run on-device facial-recognition, do not extract or store facial landmarks or biometric templates, and do not collect video or any other live face data.</li>
+  <li><strong>How it is used.</strong> The photograph is used solely as the conditioning input to OpenAI's <code>gpt-image-2</code> image-edit API in order to compose your three result plates: a four-frame lifestyle photo essay, a six-style hairstyle grid, and a six-tone wardrobe-palette grid. It is not used for identification, authentication, advertising, training, profiling, or any other purpose.</li>
+  <li><strong>Who it is shared with.</strong> Only with OpenAI as the third-party processor that performs the image generation, transmitted over an encrypted HTTPS connection. As of this writing, OpenAI's API terms state that customer API inputs are not used to train OpenAI's models. OpenAI's processing is governed by the <a href="https://openai.com/policies/privacy-policy">OpenAI Privacy Policy</a>. The photograph is never sold or shared with advertisers, data brokers, analytics providers, or any other third party.</li>
+  <li><strong>Where it is stored.</strong> The photograph passes through our backend (a Cloudflare Worker) only in-memory for the brief duration required to forward it to OpenAI and return the generated images to your device. We do not retain a copy of the photograph on our servers, in any database, or in any logs after the request completes.</li>
+  <li><strong>How long it is retained.</strong> Zero retention by Looxx. The photograph is deleted from server memory the moment the generation request completes (typically within 30–60 seconds). Generated images are returned to your device and cached in the App's local sandbox; you may save them to your iOS Photos library at your own discretion.</li>
+  <li><strong>Your rights.</strong> Because we do not retain your photograph, there is no stored face data for you to request access to or deletion of. You can revoke photo-library access at any time in iOS Settings → Privacy &amp; Security → Photos → Looxx, after which the App can no longer access your photographs.</li>
 </ul>
 
 <h2>What we do not collect</h2>
